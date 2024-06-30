@@ -13,13 +13,15 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*", // Adjust origins as per your requirements
+    origin: [
+      "https://testing-bay-iota.vercel.app/",
+      "https://backendforcolab-hzk11wg6.b4a.run/",
+    ], // Adjust origins as per your requirements
     methods: ["GET", "POST"],
     credentials: true,
   }
 });
 
-app.use(ccors((req, res, next) => next()));
 // Prometheus metrics
 const promRegistry = new promClient.Registry();
 promClient.collectDefaultMetrics({ register: promRegistry });
@@ -61,7 +63,10 @@ const roomroutes = require('./Videochat/video');
 
 // Middleware
 app.use(cors({
-  origin: "*", // Adjust origin as per your requirements
+  origin: [
+    "https://testing-bay-iota.vercel.app/",
+    "https://backendforcolab-hzk11wg6.b4a.run/"
+  ], // Adjust origin as per your requirements
   credentials: true
 }));
 app.use(cookieParser());

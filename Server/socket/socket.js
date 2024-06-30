@@ -7,7 +7,10 @@ var app = express();
 var server = http.createServer(app);
 var io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "https://testing-bay-iota.vercel.app/",
+      "https://backendforcolab-hzk11wg6.b4a.run/"
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   }
