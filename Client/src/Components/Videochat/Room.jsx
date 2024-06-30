@@ -12,7 +12,7 @@ const Room = () => {
   useEffect(() => {
     const socket = io(import.meta.env.VITE_APP_URL); // Update this URL to match your server
     const myPeer = new Peer(undefined, {
-      host: import.meta.env.VITE_APP_DOMAIN,
+      host: '4.186.24.2',
       port: "3001",
 
     });
