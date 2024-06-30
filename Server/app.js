@@ -12,7 +12,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: true, // Adjust origins as per your requirements
+    origin: "*", // Adjust origins as per your requirements
     methods: ["GET", "POST"],
     credentials: true,
   }
@@ -59,7 +59,7 @@ const roomroutes = require('./Videochat/video');
 
 // Middleware
 app.use(cors({
-  origin: true, // Adjust origin as per your requirements
+  origin: "*", // Adjust origin as per your requirements
   credentials: true
 }));
 app.use(cookieParser());

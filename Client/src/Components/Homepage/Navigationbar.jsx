@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { ListItemButton } from "@mui/material"; // Import ListItemButton
+import Conf from "../Videochat/Conf";
 
 const NavigationBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,6 +101,14 @@ const NavigationBar = () => {
               className="hover:text-gray-300 transition duration-300"
             >
               Contact Us
+            </Link>
+          </div>
+          <div className="mr-4">
+            <Link
+              to="/video-chat"
+              className="hover:text-gray-300 transition duration-300"
+            >
+              video
             </Link>
           </div>
           <div className="mr-4">
