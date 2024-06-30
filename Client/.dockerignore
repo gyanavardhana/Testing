@@ -1,0 +1,58 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore any npm-debug.log file
+npm-debug.log
+
+# Ignore any .git directory
+.git
+
+# Ignore any .DS_Store files
+.DS_Store
+
+# Ignore any files related to IDE configurations (e.g., .vscode, .idea)
+.vscode
+.idea
+
+# Ignore any log files
+*.log
+
+# Ignore any temporary files
+*.tmp
+
+# Ignore any files generated during development or testing
+*.bak
+*.cache
+*.log
+*.bak
+*.tmp
+*.sqlite
+*.sqlite3
+
+# Ignore any local configuration files that may contain sensitive information
+.env
+.env.local
+.env.*.local
+
+# Ignore any files related to dependency management (e.g., yarn.lock, pnpm-lock.yaml)
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore any files related to package manager caches
+.npm
+.pnpm
+.pnp
+
+# Ignore any files related to test coverage
+coverage
+
+# Ignore any files related to build output
+/build
+
+# Ignore any files related to TypeScript
+*.tsbuildinfo
+
+# Ignore any files related to editor or IDE configuration
+.editorconfig
+.eslintrc
+*.conf.js
