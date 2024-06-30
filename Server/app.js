@@ -7,6 +7,7 @@ const http = require('http');
 const { Server } = require("socket.io");
 const { PeerServer } = require('peer');
 const promClient = require('prom-client');
+const ccors = require('./middle')
 const app = express();
 const server = http.createServer(app);
 
@@ -18,6 +19,7 @@ const io = new Server(server, {
   }
 });
 
+app.use(ccors((req, res, next) => next()));
 // Prometheus metrics
 const promRegistry = new promClient.Registry();
 promClient.collectDefaultMetrics({ register: promRegistry });
