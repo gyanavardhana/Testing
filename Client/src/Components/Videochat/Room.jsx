@@ -12,7 +12,7 @@ const Room = () => {
   useEffect(() => {
     const socket = io(import.meta.env.VITE_APP_URL); // Update this URL to match your server
     const myPeer = new Peer(undefined, {
-      host: '4.186.24.2',
+      host: 'https://zipak-y9ex8xml.b4a.run/',
       port: "3001",
 
     });
