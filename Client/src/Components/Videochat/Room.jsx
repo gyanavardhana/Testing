@@ -12,8 +12,7 @@ const Room = () => {
   useEffect(() => {
     const socket = io(import.meta.env.VITE_APP_URL); // Update this URL to match your server
     const myPeer = new Peer(undefined, {
-      host: 'https://zipak-y9ex8xml.b4a.run/',
-      port: "3001",
+      host: 'zipak-y9ex8xml.b4a.run',
 
     });
     const myVideo = document.createElement("video");
