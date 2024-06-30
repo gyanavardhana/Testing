@@ -7,19 +7,31 @@ const http = require('http');
 const { Server } = require("socket.io");
 const { PeerServer } = require('peer');
 const promClient = require('prom-client');
-const ccors = require('./middle')
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "https://testing-bay-iota.vercel.app",
+  "https://backendforcolab-hzk11wg6.b4a.run"
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(cookieParser());
+
 const io = new Server(server, {
-  cors: {
-    origin: [
-      "https://testing-bay-iota.vercel.app/",
-      "https://backendforcolab-hzk11wg6.b4a.run/",
-    ], // Adjust origins as per your requirements
-    methods: ["GET", "POST"],
-    credentials: true,
-  }
+  cors: corsOptions
 });
 
 // Prometheus metrics
@@ -51,7 +63,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Import your routes here
 const memberroutes = require('./routes/memberroutes');
 const organizationroutes = require('./routes/organizationroutes');
@@ -59,17 +70,6 @@ const projectroutes = require('./routes/project');
 const messageroutes = require('./routes/messageroutes');
 const AiRoutes = require('./routes/Airoutes');
 const roomroutes = require('./Videochat/video');
-
-
-// Middleware
-app.use(cors({
-  origin: [
-    "https://testing-bay-iota.vercel.app/",
-    "https://backendforcolab-hzk11wg6.b4a.run/"
-  ], // Adjust origin as per your requirements
-  credentials: true
-}));
-app.use(cookieParser());
 
 // Use your routes
 app.use(memberroutes);
@@ -121,12 +121,11 @@ io.on('connection', (socket) => {
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId);
     socket.to(roomId).emit('user-connected', userId);
-  
+
     socket.on('disconnect-video', () => {
       socket.to(roomId).emit('user-disconnected', userId);
     });
   });
-  
 });
 
 // Utility function to get key by value from an object
@@ -137,7 +136,6 @@ function getKeyByValue(object, value) {
 app.get('/onlineUsers', (req, res) => {
   res.json(onlineUsers);
 });
-
 
 app.get('/metrics', async (req, res) => {
   try {
