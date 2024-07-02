@@ -60,6 +60,14 @@ const comparePassword = async (password, user) => {
     return auth;
 };
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    sameSite: 'None', // Use 'Lax' or 'Strict' for first-party cookies
+    domain: process.env.NODE_ENV === 'production' ? 'vercel.app' : 'localhost',
+    path: '/', // Ensure cookies are accessible site-wide
+  };
+
 const memberLogin = async (req, res, next) => {
     const email = req?.body?.email;
     const password = req?.body?.password;
@@ -71,7 +79,7 @@ const memberLogin = async (req, res, next) => {
             if (auth) {
                 const token = await createToken(user?._id);
                 console.log(token);
-                res.cookie('jwt',  token, { maxAge: expirydate });
+                res.cookie('jwt',  token, { ...cookieOptions, maxAge: expirydate });
                 res.status(200).send('login successful');
             } else {
                 res.status(400).send('invalid credentials');
