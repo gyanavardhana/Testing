@@ -101,6 +101,7 @@ const memberLogout = async (req, res) => {
 const memberProfile = async(req, res, next) => {
     try {
         const token = req?.cookies?.jwt;
+        console.log(token+'hibam');
         const decoded = jwt.verify(token, process.env.TOKEN);
         const user = await MemberProfile.findOne({ memberId: decoded?.id });
         res.status(200).send(user);
