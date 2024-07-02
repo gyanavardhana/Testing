@@ -8,8 +8,8 @@ var server = http.createServer(app);
 var io = new Server(server, {
   cors: {
     origin: [
-      "https://testing-bay-iota.vercel.app/",
-      "https://backendforcolab-hzk11wg6.b4a.run/"
+      process.env.SERVERURL,
+      process.env.CLIENTURL,
     ],
     methods: ["GET", "POST"],
     credentials: true,

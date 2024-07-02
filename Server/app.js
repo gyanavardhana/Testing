@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  "https://testing-bay-iota.vercel.app",
-  "https://backendforcolab-hzk11wg6.b4a.run"
+  process.env.SERVERURL,
+  process.env.CLIENTURL,
 ];
 
 const corsOptions = {
@@ -29,6 +29,21 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
+
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Adjust SameSite attribute
+  path: '/', // Ensure cookies are accessible site-wide
+};
+
+// Example of setting a cookie
+app.use((req, res, next) => {
+  res.cookie('exampleCookie', 'cookieValue', cookieOptions);
+  next();
+});
+
 
 const io = new Server(server, {
   cors: corsOptions
