@@ -34,7 +34,7 @@ app.use(cookieParser());
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-  sameSite: 'Lax', // Use 'Lax' or 'Strict' for first-party cookies
+  sameSite: 'Strict', // Use 'Lax' or 'Strict' for first-party cookies
   path: '/', // Ensure cookies are accessible site-wide
 };
 
