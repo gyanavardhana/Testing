@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  'https://testing-three-ruddy-82.vercel.app/',
-  'https://backend-87mwl98b.b4a.run/',
+  'https://testing-three-ruddy-82.vercel.app',
+  'https://backend-87mwl98b.b4a.run',
 ];
 
 const corsOptions = {
@@ -43,7 +43,6 @@ app.use((req, res, next) => {
   res.cookie('exampleCookie', 'cookieValue', cookieOptions);
   next();
 });
-
 
 const io = new Server(server, {
   cors: corsOptions
