@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  process.env.SERVERURL,
-  process.env.CLIENTURL,
+  'https://testing-three-ruddy-82.vercel.app/',
+  'https://backend-87mwl98b.b4a.run/',
 ];
 
 const corsOptions = {

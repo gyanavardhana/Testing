@@ -8,15 +8,15 @@ var server = http.createServer(app);
 var io = new Server(server, {
   cors: {
     origin: [
-      process.env.SERVERURL,
-      process.env.CLIENTURL,
+      'https://testing-three-ruddy-82.vercel.app/',
+      'https://backend-87mwl98b.b4a.run/',
     ],
     methods: ["GET", "POST"],
     credentials: true,
   }
 });
 
-var getReceiverSocketId = function(receiverId) {
+var getReceiverSocketId = function (receiverId) {
   return userSocketMap[receiverId];
 };
 
