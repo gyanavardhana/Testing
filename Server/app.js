@@ -34,7 +34,8 @@ app.use(cookieParser());
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-  sameSite: 'Strict', // Use 'Lax' or 'Strict' for first-party cookies
+  sameSite: 'None', // Use 'Lax' or 'Strict' for first-party cookies
+  domain: process.env.NODE_ENV === 'production' ? '.vercel.app' : 'localhost',
   path: '/', // Ensure cookies are accessible site-wide
 };
 
