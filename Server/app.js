@@ -34,7 +34,7 @@ app.use(cookieParser());
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Adjust SameSite attribute
+  sameSite: 'Lax', // Use 'Lax' or 'Strict' for first-party cookies
   path: '/', // Ensure cookies are accessible site-wide
 };
 
@@ -43,6 +43,7 @@ app.use((req, res, next) => {
   res.cookie('exampleCookie', 'cookieValue', cookieOptions);
   next();
 });
+
 
 const io = new Server(server, {
   cors: corsOptions
