@@ -22,6 +22,7 @@ const MemberLogin = () => {
       const response = await axios.get(`${import.meta.env.VITE_APP_URL}userId`, {
         withCredentials: true // Send cookies with the request
       });
+      console.log("Response:", response.data)
       console.log("User ID:", response.data.userId);
       setUserId(response.data.userId);
 
